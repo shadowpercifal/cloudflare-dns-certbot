@@ -1,0 +1,58 @@
+[build-system]
+requires = ["setuptools>=64", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "certbot-dns-regru"
+version="1.0.4"
+description = "Reg.ru DNS authenticator plugin for Certbot"
+readme = "README.md"
+requires-python = ">=3.4"
+license = "MIT"
+license-files = ["LICENSE.txt"]
+authors = [
+  { name = "Percifal", email = "percifal@shpw.ru" },
+]
+dependencies = [
+  "acme>=0.21.1",
+  "certbot>=0.21.1",
+  "requests>=2.9.1",
+  "setuptools",
+  "zope.interface",
+]
+classifiers = [
+  "Development Status :: 5 - Production/Stable",
+  "Environment :: Plugins",
+  "Intended Audience :: System Administrators",
+  "Operating System :: POSIX :: Linux",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.4",
+  "Programming Language :: Python :: 3.5",
+  "Programming Language :: Python :: 3.6",
+  "Programming Language :: Python :: 3.7",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Topic :: Internet :: WWW/HTTP",
+  "Topic :: Security",
+  "Topic :: System :: Installation/Setup",
+  "Topic :: System :: Networking",
+  "Topic :: System :: Systems Administration",
+  "Topic :: Utilities",
+]
+[project.urls]
+Homepage = "https://github.com/shadowpercifal/certbot-dns-regru"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["certbot_regru*"]
+
+[tool.setuptools.package-data]
+"certbot_regru" = ["*.ini"]
+
+[tool.setuptools.data-files]
+"/etc/letsencrypt" = ["regru.ini"]
+
+[project.entry-points."certbot.plugins"]
+"dns-regru" = "certbot_regru.dns:Authenticator"
