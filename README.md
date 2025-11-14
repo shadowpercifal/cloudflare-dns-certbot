@@ -1,6 +1,8 @@
 # certbot-dns-regru
 Reg.ru DNS authenticator plugin for Certbot
 
+English|[Русский](README.ru.md)
+
 An authenticator plugin for [certbot](https://certbot.eff.org/) to support [Let's Encrypt](https://letsencrypt.org/) 
 DNS challenges (dns-01) for domains managed by the nameservers of [Reg.ru](https://www.reg.ru).
 
@@ -51,14 +53,25 @@ certbot certonly \
    -d sub.domain.tld -d '*.wildcard.tld'
 ```
 
-Notes:
-- Use single quotes around the wildcard domain to prevent shell expansion.
-- The credentials file must be readable only by the user running certbot.
-- Omit the propagation seconds option to use the default (120).
+- Note that shell might try to resolve wildcard subdomain (`*`), you should put in in parentheses
 
 Renewals will automatically be performed using the same authenticator and credentials by certbot.
 
 See also `certbot --help certbot-dns-regru` for further information.
+
+## SWAG
+
+To use this plugin with [docker-swag](https://github.com/linuxserver/docker-swag) you need to follow their [guide](https://github.com/linuxserver/docker-swag?tab=readme-ov-file#certbot-plugins)
+
+Add the following environment variables to your container:
+
+```
+DOCKER_MODS=linuxserver/mods:universal-package-install
+INSTALL_PIP_PACKAGES=certbot-dns-regru
+```
+
+Then modify `/config/dns-conf/regru.ini` and provide credentials
+
 
 ## Removal
 ```
