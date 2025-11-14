@@ -73,7 +73,7 @@ class RegRuLiveTests(unittest.TestCase):
                 pass
 
         # Create a temporary regru.ini file with proper key names expected by the plugin
-        self.temp_credentials_file = tempfile.NamedTemporaryFile(prefix="regru_", suffix=".ini", delete=False)
+        self.temp_credentials_file = tempfile.NamedTemporaryFile(prefix="regru", suffix=".ini", delete=False)
         creds_content = (
             f"dns_regru_username={USERNAME}\n"
             f"dns_regru_password={PASSWORD}\n"
@@ -83,7 +83,7 @@ class RegRuLiveTests(unittest.TestCase):
         self.temp_credentials_file.close()
 
         # Build a minimal config object providing path and propagation seconds
-        self.config = SimpleNamespace(regru_credentials=self.temp_credentials_file.name, regru_propagation_seconds=0)
+        self.config = SimpleNamespace(dns_regru_credentials=self.temp_credentials_file.name, dns_regru_propagation_seconds=0)
 
         # Instantiate authenticator which will read credentials file
         self.auth = Authenticator(self.config, "dns-regru")
