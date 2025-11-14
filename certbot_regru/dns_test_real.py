@@ -75,8 +75,8 @@ class RegRuLiveTests(unittest.TestCase):
         # Create a temporary regru.ini file with proper key names expected by the plugin
         self.temp_credentials_file = tempfile.NamedTemporaryFile(prefix="regru_", suffix=".ini", delete=False)
         creds_content = (
-            f"regru_username={USERNAME}\n"
-            f"regru_password={PASSWORD}\n"
+            f"dns_regru_username={USERNAME}\n"
+            f"dns_regru_password={PASSWORD}\n"
         )
         self.temp_credentials_file.write(creds_content.encode("utf-8"))
         self.temp_credentials_file.flush()
@@ -86,7 +86,7 @@ class RegRuLiveTests(unittest.TestCase):
         self.config = SimpleNamespace(regru_credentials=self.temp_credentials_file.name, regru_propagation_seconds=0)
 
         # Instantiate authenticator which will read credentials file
-        self.auth = Authenticator(self.config, "regru")
+        self.auth = Authenticator(self.config, "dns-regru")
         self.auth._setup_credentials()  # pylint: disable=protected-access
         # Get client via authenticator (ensures same path used)
         self.client = self.auth._get_regru_client()  # pylint: disable=protected-access

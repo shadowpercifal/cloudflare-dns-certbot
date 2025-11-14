@@ -20,7 +20,7 @@ For older Ubuntu distributions check out this PPA:
 
 2. Configure it with your Reg.ru Credentials:
    ```
-   sudo vim /etc/letsencrypt/regru.ini
+   sudo nano /etc/letsencrypt/regru.ini
    ```
 
 3. Make sure the file is only readable by root! Otherwise all your domains might be in danger:
@@ -37,7 +37,7 @@ Linux:
 sudo certbot certonly \
    --authenticator dns-regru \
    --dns-regru-credentials /etc/letsencrypt/regru.ini \
-   --dns-regru-propagation-seconds 120 \
+   --dns-regru-propagation-seconds 10 \
    -d sub.domain.tld -d '*.wildcard.tld'
 ```
 
@@ -47,7 +47,7 @@ Windows (PowerShell):
 certbot certonly \
    --authenticator dns-regru \
    --dns-regru-credentials C:\path\to\regru.ini \
-   --dns-regru-propagation-seconds 120 \
+   --dns-regru-propagation-seconds 10 \
    -d sub.domain.tld -d '*.wildcard.tld'
 ```
 
@@ -61,6 +61,6 @@ Renewals will automatically be performed using the same authenticator and creden
 See also `certbot --help certbot-dns-regru` for further information.
 
 ## Removal
-   ```
+```
    sudo pip uninstall certbot-dns-regru
-   ```
+```
